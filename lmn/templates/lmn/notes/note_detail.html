@@ -9,4 +9,11 @@
   <p id="note-title"><b>{{ note.title}}</b></p>
   <p id="note-text">{{ note.text }}</p>
 
+  <!--  Insert Twitter badge for "Social Media Integration" Issue. -->
+
+  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Check out this interesting, FIRST-HAND concert review for {{ note.show.artist.name }} created using the ZABRAS Platform:" data-hashtags="ZABRAS" data-show-count="false">Tweet</a>
+  
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
 {% endblock %}
