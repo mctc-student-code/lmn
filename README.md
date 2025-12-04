@@ -6,41 +6,55 @@
 ### To install
 
 1. Create and activate a virtual environment. Use Python3 as the interpreter. Suggest locating the venv/ directory outside of the code directory.
+   
+2. Install the requirements given in requirements.txt
 
 ```
 pip install -r requirements.txt
-python manage.py makemigrations
-python manage.py migrate
-python manage.py runserver
 ```
 
-Site at
+3. Migrate the database
 
-http://127.0.0.1:8000
+```
+python manage.py migrate
+```
 
 
 ### Create superuser
+
+Create a superuser, 
 
 ```
 python manage.py createsuperuser
 ```
 
-enter username and password
+Enter a username and password. Remember the password. If you forget, you can create another superuser with the same command. 
 
-Then you will be able to use these to log into admin console at
+### Run the server 
 
-127.0.0.1:8000/admin/
+Run the server, 
 
-Create some example Artists, Venues, and Shows for the app to use. A user will create Notes using the app. 
+```
+python manage.py runserver
+```
+
+Your site should be visible at http://127.0.0.1:8000
+
+You will be able to the superuser username and password to log into admin console at http://127.0.0.1:8000/admin/
+
+Create some example **Artists**, **Venues**, and **Shows** for the app to use. A user will then be able to create **Notes** using the app. 
+
+When you view the site, you should see artists, venues and shows, and be able to add notes. 
+
+The app allows new users to create accounts, and users can log in, and log out.
 
 ### Run tests
-
 
 ```
 python manage.py test
 ```
 
-Or just some of the tests,
+Or just some of the tests, for example, the tests in one package, or the tests in one file, or one test in one file. 
 
 ```
 python manage.py test lmn.tests.test_views
@@ -48,29 +62,9 @@ python manage.py test lmn.tests.test_views.TestUserAuthentication
 python manage.py test lmn.tests.test_views.TestUserAuthentication.test_user_registration_logs_user_in
 ```
 
-
-### Functional Tests with Selenium
-
-Make sure you have the latest version of Chrome or Firefox, and the most recent chromedriver or geckodriver, and latest Selenium.
-
-chromedriver/geckodriver needs to be in path or you need to tell Selenium where it is. Pick an approach: http://stackoverflow.com/questions/40208051/selenium-using-python-geckodriver-executable-needs-to-be-in-path
-
-If your DB is hosted at Elephant, your tests might time out, and you might need to use longer waits http://selenium-python.readthedocs.io/waits.html
-
-Run tests with
-
-```
-python manage.py test lmn.tests.functional_tests.functional_tests
-```
-
-Or select tests, for example,
-```
-python manage.py test lmn.functional_tests.functional_tests.HomePageTest
-python manage.py test lmn.functional_tests.functional_tests.BrowseArtists.test_searching_artists
-```
-
-
 ### Test coverage
+
+The app uses Coverage to generate a test coverage report. 
 
 From directory with manage.py in it,
 
@@ -81,14 +75,16 @@ coverage report
 
 ### Linting
 
-Ensure requirements are installed, then run,
+The app uses Flake8 to lint code files. This checks for some (but not all) code quality issues.
 
 ```
 flake8 .
 ```
 
-Configure linting rules if desired in the .flake8 file. 
+Configure linting rules if desired in the .flake8 file. You may want to list your virtual environment directory if it has a name other than venv, otherwise Flake8 will lint the library files and that isn't necessary. 
+
+A tool called JinjaLint is installed when GitHub actions runs your tests. You may also install this locally, but it's somewhat common to see issues when trying to run it. 
 
 ### Databases
 
-You will likely want to configure the app to use SQLite locally, and PaaS database when deployed.  
+The app is configured to use a SQLite database, which is usually sufficent for local development. You will likely want to configure the app to use SQLite locally, and PaaS database when deployed.  
